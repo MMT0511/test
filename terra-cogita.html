@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Terra Cogita - Achat Kamas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0f766e, #0ea5e9);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background-color: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        input, button {
+            padding: 10px;
+            margin-top: 15px;
+            width: 80%;
+            font-size: 1em;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            background-color: #10b981;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #059669;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Achat Kamas - Terra Cogita</h1>
+        <p>Prix : <strong>4.8 € / million</strong></p>
+        <p>Stock disponible : <strong>400M</strong></p>
+        
+        <label for="amount">Nombre de millions :</label><br>
+        <input type="number" id="amount" min="1" max="400" placeholder="Ex: 10"><br>
+
+        <button onclick="payer()">Payer avec PayPal</button>
+    </div>
+
+    <script>
+        function payer() {
+            const amount = document.getElementById('amount').value;
+            if (!amount || amount <= 0 || amount > 400) {
+                alert("Veuillez entrer une quantité valide (max 400M).");
+                return;
+            }
+            const total = (amount * 4.8).toFixed(2);
+            alert(`Redirection vers PayPal pour ${total} €...`);
+            // Redirection PayPal fictive :
+            // window.location.href = "https://www.paypal.com/...";
+        }
+    </script>
+</body>
+</html>
