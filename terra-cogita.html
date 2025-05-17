@@ -6,14 +6,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #0f766e, #0ea5e9);
+            background: url('images/bg-terra-cogita.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             text-align: center;
             padding: 50px;
         }
 
         .box {
-            background-color: rgba(0,0,0,0.3);
+            background-color: rgba(0,0,0,0.6);
             padding: 30px;
             border-radius: 15px;
             max-width: 500px;
@@ -38,6 +39,26 @@
         button:hover {
             background-color: #059669;
         }
+
+        #total-price {
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #bbf7d0;
+        }
+
+        .return-home {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1e3a8a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .return-home:hover {
+            background-color: #3b82f6;
+        }
     </style>
 </head>
 <body>
@@ -47,12 +68,23 @@
         <p>Stock disponible : <strong>400M</strong></p>
         
         <label for="amount">Nombre de millions :</label><br>
-        <input type="number" id="amount" min="1" max="400" placeholder="Ex: 10"><br>
+        <input type="number" id="amount" min="1" max="400" placeholder="Ex: 10" oninput="updatePrice()"><br>
 
-        <button onclick="payer()">Payer avec PayPal</button>
+        <div id="total-price"></div>
+
+        <button onclick="payer()">Payer avec PayPal</button><br>
+
+        <a href="index.html" class="return-home">Retour à l'accueil</a>
     </div>
 
     <script>
+        function updatePrice() {
+            const amount = document.getElementById('amount').value;
+            const pricePerM = 4.8;
+            const total = amount && amount > 0 ? (amount * pricePerM).toFixed(2) : '';
+            document.getElementById('total-price').innerText = total ? `Total à payer : ${total} €` : '';
+        }
+
         function payer() {
             const amount = document.getElementById('amount').value;
             if (!amount || amount <= 0 || amount > 400) {
@@ -61,8 +93,6 @@
             }
             const total = (amount * 4.8).toFixed(2);
             alert(`Redirection vers PayPal pour ${total} €...`);
-            // Redirection PayPal fictive :
-            // window.location.href = "https://www.paypal.com/...";
         }
     </script>
 </body>
