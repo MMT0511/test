@@ -12,7 +12,6 @@
             text-align: center;
             padding: 50px;
         }
-
         .box {
             background-color: rgba(0,0,0,0.6);
             padding: 30px;
@@ -20,7 +19,6 @@
             max-width: 500px;
             margin: auto;
         }
-
         input, button {
             padding: 10px;
             margin-top: 15px;
@@ -29,23 +27,19 @@
             border-radius: 10px;
             border: none;
         }
-
         button {
             background-color: #10b981;
             color: white;
             cursor: pointer;
         }
-
         button:hover {
             background-color: #059669;
         }
-
         #total-price {
             margin-top: 15px;
             font-size: 1.2em;
             color: #bbf7d0;
         }
-
         .return-home {
             margin-top: 30px;
             display: inline-block;
@@ -55,7 +49,6 @@
             text-decoration: none;
             border-radius: 8px;
         }
-
         .return-home:hover {
             background-color: #3b82f6;
         }
@@ -66,25 +59,28 @@
         <h1>Achat Kamas - Terra Cogita</h1>
         <p>Prix : <strong>4.8 € / million</strong></p>
         <p>Stock disponible : <strong>400M</strong></p>
-        
         <label for="amount">Nombre de millions :</label><br>
         <input type="number" id="amount" min="1" max="400" placeholder="Ex: 10" oninput="updatePrice()"><br>
-
         <div id="total-price"></div>
-
         <button onclick="payer()">Payer avec PayPal</button><br>
-
         <a href="index.html" class="return-home">Retour à l'accueil</a>
     </div>
-
     <script>
         function updatePrice() {
-            const amount = document.getElementById('amount').value;
+            const input = document.getElementById('amount');
             const pricePerM = 4.8;
-            const total = amount && amount > 0 ? (amount * pricePerM).toFixed(2) : '';
-            document.getElementById('total-price').innerText = total ? `Total à payer : ${total} €` : '';
+            let amount = parseInt(input.value);
+            if (amount > 400) {
+                amount = 400;
+                input.value = 400;
+            }
+            if (amount > 0) {
+                const total = (amount * pricePerM).toFixed(2);
+                document.getElementById('total-price').innerText = `Total à payer : ${total} €`;
+            } else {
+                document.getElementById('total-price').innerText = '';
+            }
         }
-
         function payer() {
             const amount = document.getElementById('amount').value;
             if (!amount || amount <= 0 || amount > 400) {
