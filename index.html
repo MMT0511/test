@@ -1,152 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>KAMASTOS - Achat/Revente Kamas Dofus</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #e5f8f7;
-    margin: 0; padding: 0;
-    color: #033b3c;
-  }
-  header {
-    background-color: #d0f0ec;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-  }
-  header h1 {
-    color: #027373;
-    margin: 0;
-  }
-  header img {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    height: 50px;
-  }
-  #order-section {
-    max-width: 480px;
-    margin: 30px auto;
-    padding: 20px;
-    border: 2px solid #027373;
-    border-radius: 8px;
-    background-color: #ffffff;
-  }
-  label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-  }
-  select, input[type=number] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 1rem;
-    border: 1px solid #027373;
-    border-radius: 4px;
-  }
-  #total-price, #stock-info {
-    margin-top: 20px;
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  button {
-    margin-top: 25px;
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-    background-color: #33c4b3;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 6px;
-  }
-  button:hover {
-    background-color: #2ba89b;
-  }
-  footer {
-    margin-top: 50px;
-    font-size: 0.8rem;
-    color: #666;
-    text-align: center;
-    border-top: 1px solid #ccc;
-    padding: 10px;
-  }
-  .image-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .image-container img {
-    max-width: 100px;
-    margin: 10px;
-  }
-</style>
-</head>
-<body>
-<header>
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAYAAACpQn9PAAAAAXNSR0IArs4c6QAAAG1JREFUOE9jZKAxYKSx+QyjF9RyoAApxkAMUApnIGFgFgYVDDwAAy1gk+hnQioAUj9RmIk5CkTwKkIgkAmQykXWQ6kUeBqRzQOQOkHCQpkC4TyC4VIBKakSaQZ4eQGgBJjP2BeEAEXaEYUAACIrNdfm60U6AAAAAElFTkSuQmCC" alt="pièces kamas">
-  <h1>KAMASTOS</h1>
-  <p>Prix du million de kamas selon serveur</p>
-</header>
-
-<div class="image-container">
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGNCAYAAAB19ZKiAAAACXBIWXMAAB7CAAAewgFu0HU+AAAA... (base64 tronqué pour exemple)" alt="coffre dofus">
-</div>
-
-<section id="order-section">
-  <label for="server">Choisissez votre serveur :</label>
-  <select id="server" onchange="updateDisplay()">
-    <option value="terra" data-price="4.8" data-stock="400">Terra Cogita (4.8 € / M)</option>
-    <option value="tiliwan" data-price="3.5" data-stock="300">Tiliwan (3.5 € / M)</option>
-    <option value="oshimo" data-price="2.8" data-stock="250">Oshimo (2.8 € / M)</option>
-  </select>
-
-  <div id="stock-info">Stock disponible : 400 M</div>
-
-  <label for="quantity">Quantité (en millions de kamas) :</label>
-  <input type="number" id="quantity" min="1" step="1" value="1" oninput="updateDisplay()" />
-
-  <div id="total-price">Total à payer : 4.80 €</div>
-
-  <button id="buy-button">Payer avec PayPal / Wise</button>
-</section>
-
-<div class="image-container">
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGNCAYAAAB19ZKiAAAACXBIWXMAAB7CAAAewgFu0HU+AAAA... (base64 tronqué pour exemple)" alt="dofus image">
-</div>
-
-<footer>
-  <p>© 2025 Kamastos - Mentions légales - Contact</p>
-</footer>
-
-<script>
-  function updateDisplay() {
-    const serverSelect = document.getElementById('server');
-    const selectedOption = serverSelect.options[serverSelect.selectedIndex];
-    const pricePerM = parseFloat(selectedOption.getAttribute('data-price'));
-    const stock = parseInt(selectedOption.getAttribute('data-stock'));
-    const quantityInput = document.getElementById('quantity');
-    let quantity = parseInt(quantityInput.value) || 1;
-
-    if(quantity > stock) {
-      quantity = stock;
-      quantityInput.value = stock;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dofus Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #e6f9f0, #d0f0ff);
+      margin: 0;
+      padding: 0;
+      color: #034732;
     }
 
-    document.getElementById('stock-info').textContent = `Stock disponible : ${stock} M`;
-    const total = (pricePerM * quantity).toFixed(2);
-    document.getElementById('total-price').textContent = `Total à payer : ${total} €`;
-  }
+    header {
+      background-color: #009688;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
 
-  updateDisplay();
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
 
-  document.getElementById('buy-button').addEventListener('click', () => {
-    alert("Paiement à venir...");
-  });
-</script>
+    h2 {
+      border-bottom: 2px solid #009688;
+      padding-bottom: 5px;
+      margin-top: 40px;
+    }
+
+    .offer {
+      background-color: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+    }
+
+    .offer img {
+      width: 80px;
+      height: auto;
+      margin-right: 20px;
+    }
+
+    .offer-content {
+      flex: 1;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #004d40;
+      color: white;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Boutique Dofus</h1>
+    <p>Achète tes kamas et objets en toute sécurité</p>
+  </header>
+
+  <div class="container">
+    <h2>Nos offres</h2>
+
+    <div class="offer">
+      <img src="images/kamas.png" alt="Kamas" />
+      <div class="offer-content">
+        <h3>1M Kamas - 1€</h3>
+        <p>Livraison rapide, serveur au choix.</p>
+      </div>
+    </div>
+
+    <div class="offer">
+      <img src="images/coffre.png" alt="Coffre Dofus" />
+      <div class="offer-content">
+        <h3>Pack de ressources rares</h3>
+        <p>Économise du temps pour tes crafts !</p>
+      </div>
+    </div>
+
+    <div class="offer">
+      <img src="images/dofus-oeuf.png" alt="Dofus Oeuf" />
+      <div class="offer-content">
+        <h3>Dofus exclusifs</h3>
+        <p>Obtiens des Dofus puissants directement en jeu.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Contact via Discord : mobile001
+  </footer>
 </body>
 </html>
