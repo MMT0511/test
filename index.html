@@ -1,102 +1,100 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dofus Store</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #e6f9f0, #d0f0ff);
-      margin: 0;
-      padding: 0;
-      color: #034732;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dofus Touch Kamas</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #0f766e, #0ea5e9);
+            color: white;
+            text-align: center;
+        }
 
-    header {
-      background-color: #009688;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+        header {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+        }
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
+        h1 {
+            margin: 0;
+            font-size: 3em;
+        }
 
-    h2 {
-      border-bottom: 2px solid #009688;
-      padding-bottom: 5px;
-      margin-top: 40px;
-    }
+        .images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
 
-    .offer {
-      background-color: white;
-      border-radius: 12px;
-      padding: 15px;
-      margin: 15px 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-    }
+        .images img {
+            width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
 
-    .offer img {
-      width: 80px;
-      height: auto;
-      margin-right: 20px;
-    }
+        .images img:hover {
+            transform: scale(1.1);
+        }
 
-    .offer-content {
-      flex: 1;
-    }
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 15px;
+        }
 
-    footer {
-      text-align: center;
-      background-color: #004d40;
-      color: white;
-      padding: 15px;
-      margin-top: 40px;
-    }
-  </style>
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        a {
+            color: #bbf7d0;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #a7f3d0;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Boutique Dofus</h1>
-    <p>Achète tes kamas et objets en toute sécurité</p>
-  </header>
+    <header>
+        <h1>Vente de Kamas - Dofus Touch</h1>
+        <p>Fiable, rapide, sécurisé</p>
+    </header>
 
-  <div class="container">
-    <h2>Nos offres</h2>
-
-    <div class="offer">
-      <img src="images/kamas.png" alt="Kamas" />
-      <div class="offer-content">
-        <h3>1M Kamas - 1€</h3>
-        <p>Livraison rapide, serveur au choix.</p>
-      </div>
+    <div class="images">
+        <img src="images/kamas.png" alt="Kamas">
+        <img src="images/coffre.png" alt="Coffre">
+        <img src="images/dofus-oeuf.png" alt="Dofus Oeuf">
     </div>
 
-    <div class="offer">
-      <img src="images/coffre.png" alt="Coffre Dofus" />
-      <div class="offer-content">
-        <h3>Pack de ressources rares</h3>
-        <p>Économise du temps pour tes crafts !</p>
-      </div>
+    <div class="content">
+        <h2>Pourquoi nous choisir ?</h2>
+        <p>
+            Notre service vous garantit une livraison rapide, une sécurité maximale et un service client à l'écoute.
+            Paiement sécurisé et 100% anonyme. Nous livrons directement en jeu, sur tous les serveurs Dofus Touch.
+        </p>
+
+        <h2>Comment commander ?</h2>
+        <p>
+            Cliquez simplement sur le bouton de commande ci-dessous, entrez vos informations, et recevez vos kamas en quelques minutes !
+        </p>
+
+        <a href="#">Commander maintenant</a>
     </div>
 
-    <div class="offer">
-      <img src="images/dofus-oeuf.png" alt="Dofus Oeuf" />
-      <div class="offer-content">
-        <h3>Dofus exclusifs</h3>
-        <p>Obtiens des Dofus puissants directement en jeu.</p>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    Contact via Discord : mobile001
-  </footer>
+    <footer>
+        <p>&copy; 2025 Vente Kamas Dofus Touch - Tous droits réservés</p>
+    </footer>
 </body>
 </html>
