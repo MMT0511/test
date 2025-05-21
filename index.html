@@ -8,50 +8,27 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom right, #0f766e, #0ea5e9);
+            background: url('images/fond-home.png') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             text-align: center;
         }
 
         header {
-            display: flex;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            text-align: center;
             padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        header img {
+        .logo {
+            display: block;
+            margin: 0 auto 10px;
             height: 60px;
-            margin-right: 20px;
         }
 
-        h1 {
+        .header-title h1 {
             margin: 0;
             font-size: 2.5em;
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .menu-onglets {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px 0;
-            border-radius: 10px;
-        }
-
-        .menu-onglets a {
-            color: #bbf7d0;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-
-        .menu-onglets a:hover {
-            color: #a7f3d0;
-            text-decoration: underline;
         }
 
         .images {
@@ -63,11 +40,11 @@
         }
 
         .images img {
-            width: 150px;
-            height: auto;
-            cursor: pointer;
+            height: 210px;
+            width: auto;
             transition: transform 0.3s ease;
         }
+
 
         .images img:hover {
             transform: scale(1.1);
@@ -99,21 +76,17 @@
 </head>
 <body>
     <header>
-        <img src="images/dofus-touch.png" alt="Logo Dofus Touch">
-        <h1>Vente de Kamas - Dofus Touch</h1>
+        <img src="images/dofus-touch.png" alt="Logo Dofus Touch" class="logo">
+        <div class="header-title">
+            <h1>Vente de Kamas - Dofus Touch</h1>
+            <p>Fiable, rapide, sécurisé</p>
+        </div>
     </header>
 
-    <nav class="menu-onglets">
-        <a href="#vente">Vente</a>
-        <a href="#achat">Achat</a>
-        <a href="#transferts">Transferts</a>
-        <a href="#serveurs">Serveurs</a>
-    </nav>
-
     <div class="images">
-        <img src="images/kamas.png" alt="Kamas">
-        <img src="images/coffre.png" alt="Coffre">
-        <img src="images/dofus-oeuf.png" alt="Dofus Oeuf">
+        
+        <img src="images/coffre.png" alt="Oshimo">
+        
     </div>
 
     <div class="content">
