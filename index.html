@@ -8,16 +8,14 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('images/fond-home.png') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            text-align: center;
+            background-color: #0f172a;
+            color: #f1f5f9;
         }
 
         header {
             text-align: center;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px 10px 10px;
+            background-color: #1e293b;
         }
 
         .logo {
@@ -29,28 +27,53 @@
         .header-title h1 {
             margin: 0;
             font-size: 2.5em;
+            color: #f8fafc;
+        }
+
+        .header-title p {
+            margin: 5px 0 10px;
+            font-size: 1em;
+            color: #94a3b8;
         }
 
         .menu-onglets {
-            margin-top: 10px;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px 0;
-            border-radius: 10px;
+            gap: 40px;
+            background-color: #0f172a;
+            padding: 12px 0;
+            border-bottom: 2px solid #334155;
         }
 
         .menu-onglets a {
-            color: #bbf7d0;
+            color: #f8fafc;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
         }
 
         .menu-onglets a:hover {
-            color: #a7f3d0;
-            text-decoration: underline;
+            color: #38bdf8;
+            border-color: #38bdf8;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .hero-section p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: auto;
+            color: #cbd5e1;
         }
 
         .images {
@@ -58,40 +81,29 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
-            margin-top: 30px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         .images img {
-            height: 210px;
+            height: 180px;
             width: auto;
-            transition: transform 0.3s ease;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .images img:hover {
-            transform: scale(1.1);
-        }
-
-        .content {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: rgba(0,0,0,0.3);
-            padding: 30px;
-            border-radius: 15px;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
         }
 
         footer {
             margin-top: 40px;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        a {
-            color: #bbf7d0;
-            text-decoration: underline;
-        }
-
-        a:hover {
-            color: #a7f3d0;
+            background-color: #1e293b;
+            color: #94a3b8;
+            text-align: center;
         }
     </style>
 </head>
@@ -102,8 +114,6 @@
             <h1>Vente de Kamas - Dofus Touch</h1>
             <p>Fiable, rapide, sécurisé</p>
         </div>
-
-        <!-- Onglets ajoutés ici -->
         <nav class="menu-onglets">
             <a href="vente.html">Vente</a>
             <a href="achat.html">Achat</a>
@@ -112,27 +122,15 @@
         </nav>
     </header>
 
+    <section class="hero-section">
+        <h2>Un service fiable, rapide et discret</h2>
+        <p>Commandez vos kamas en quelques clics. Choisissez votre serveur, indiquez le montant souhaité, et recevez vos kamas en jeu en toute sécurité. Nos livreurs sont actifs tous les jours entre 19h et minuit.</p>
+    </section>
+
     <div class="images">
-        <img src="images/coffre.png" alt="Oshimo">
-    </div>
-
-    <div class="content">
-        <h2>Pourquoi nous choisir ?</h2>
-        <p>
-            Notre service vous garantit une livraison rapide, une sécurité maximale et un service client à l'écoute.
-            Paiement sécurisé et 100% anonyme. Nous livrons directement en jeu, sur tous les serveurs Dofus Touch.
-        </p>
-
-        <h2>Commander vos kamas</h2>
-        <p>
-            Pour commander, sélectionnez simplement votre serveur ci-dessous, choisissez le montant souhaité, puis payez via PayPal.
-        </p>
-
-        <div class="images">
-            <a href="terra-cogita.html"><img src="images/terra-cogita.png" alt="Terra Cogita"></a>
-            <a href="oshimo.html"><img src="images/oshimo.png" alt="Oshimo"></a>
-            <a href="tiliwan.html"><img src="images/tiliwan.png" alt="Tiliwan"></a>
-        </div>
+        <a href="terra-cogita.html"><img src="images/terra-cogita.png" alt="Terra Cogita"></a>
+        <a href="oshimo.html"><img src="images/oshimo.png" alt="Oshimo"></a>
+        <a href="tiliwan.html"><img src="images/tiliwan.png" alt="Tiliwan"></a>
     </div>
 
     <footer>
