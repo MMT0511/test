@@ -71,11 +71,26 @@
 
     .form-container {
       background-color: #1e293b;
-      max-width: 600px;
+      max-width: 900px;
       margin: 30px auto;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-grid {
+      display: flex;
+      gap: 40px;
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .form-inputs {
+      flex: 1 1 300px;
     }
 
     label {
@@ -96,18 +111,24 @@
       font-size: 1em;
     }
 
-    .server-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
+    .transfer-preview {
+      flex: 1 1 300px;
+      text-align: center;
     }
 
-    .server-img {
-      height: 32px;
-      width: 32px;
+    .server-img-large {
+      height: 100px;
+      width: 100px;
       border-radius: 50%;
       object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #38bdf8;
+    }
+
+    .arrow {
+      font-size: 2em;
+      margin: 10px 0;
+      color: #94a3b8;
     }
 
     .result {
@@ -145,40 +166,41 @@
 
   <section class="hero-section">
     <h2>Transférer vos kamas entre serveurs</h2>
-    <p>Choisissez le serveur de départ, le serveur d’arrivée, entrez le montant à transférer, et voyez combien vous recevrez après frais (5%).</p>
+    <p>Choisissez les serveurs, indiquez le montant, et visualisez le transfert. Frais de transfert : <strong>25%</strong></p>
   </section>
 
   <div class="form-container">
-    <label for="source">Serveur source</label>
-    <select id="source">
-      <option value="terra-cogita">🟢 Terra Cogita</option>
-      <option value="oshimo">🟢 Oshimo</option>
-      <option value="hergedrize">🟢 Hergedrize</option>
-      <option value="tiliwan">🟢 Tiliwan</option>
-      <option value="tiliwan2">🟢 Tiliwan 2</option>
-    </select>
+    <div class="form-grid">
+      <div class="form-inputs">
+        <label for="source">Serveur source</label>
+        <select id="source">
+          <option value="terra-cogita">Terra Cogita</option>
+          <option value="oshimo">Oshimo</option>
+          <option value="hergedrize">Hergedrize</option>
+          <option value="tiliwan">Tiliwan</option>
+          <option value="tiliwan2">Tiliwan 2</option>
+        </select>
 
-    <div class="server-option">
-      <img src="images/terra-cogita.png" class="server-img" alt="Terra Cogita">
-      <img src="images/oshimo.png" class="server-img" alt="Oshimo">
-      <img src="images/hergedrize.png" class="server-img" alt="Hergedrize">
-      <img src="images/tiliwan.png" class="server-img" alt="Tiliwan">
-      <img src="images/tiliwan2.png" class="server-img" alt="Tiliwan 2">
+        <label for="target">Serveur de destination</label>
+        <select id="target">
+          <option value="terra-cogita">Terra Cogita</option>
+          <option value="oshimo">Oshimo</option>
+          <option value="hergedrize">Hergedrize</option>
+          <option value="tiliwan">Tiliwan</option>
+          <option value="tiliwan2">Tiliwan 2</option>
+        </select>
+
+        <label for="amount">Montant à transférer (en millions)</label>
+        <input type="number" id="amount" placeholder="Ex : 10" />
+        <div class="result" id="result">Vous recevrez : -</div>
+      </div>
+
+      <div class="transfer-preview">
+        <img id="img-source" src="images/terra-cogita.png" alt="Source" class="server-img-large">
+        <div class="arrow">⬇️</div>
+        <img id="img-target" src="images/oshimo.png" alt="Cible" class="server-img-large">
+      </div>
     </div>
-
-    <label for="target">Serveur de destination</label>
-    <select id="target">
-      <option value="terra-cogita">🟢 Terra Cogita</option>
-      <option value="oshimo">🟢 Oshimo</option>
-      <option value="hergedrize">🟢 Hergedrize</option>
-      <option value="tiliwan">🟢 Tiliwan</option>
-      <option value="tiliwan2">🟢 Tiliwan 2</option>
-    </select>
-
-    <label for="amount">Montant à transférer (en millions)</label>
-    <input type="number" id="amount" placeholder="Ex : 10" />
-
-    <div class="result" id="result">Vous recevrez : -</div>
   </div>
 
   <footer>
@@ -188,16 +210,32 @@
   <script>
     const amountInput = document.getElementById('amount');
     const result = document.getElementById('result');
+    const sourceSelect = document.getElementById('source');
+    const targetSelect = document.getElementById('target');
+    const imgSource = document.getElementById('img-source');
+    const imgTarget = document.getElementById('img-target');
 
-    amountInput.addEventListener('input', () => {
+    const updateImages = () => {
+      imgSource.src = `images/${sourceSelect.value}.png`;
+      imgTarget.src = `images/${targetSelect.value}.png`;
+    };
+
+    const updateResult = () => {
       const amount = parseFloat(amountInput.value);
       if (!isNaN(amount) && amount > 0) {
-        const received = amount * 0.95;
+        const received = amount * 0.75;
         result.textContent = `Vous recevrez : ${received.toFixed(2)} M`;
       } else {
         result.textContent = 'Vous recevrez : -';
       }
-    });
+    };
+
+    sourceSelect.addEventListener('change', updateImages);
+    targetSelect.addEventListener('change', updateImages);
+    amountInput.addEventListener('input', updateResult);
+
+    // Initial image update
+    updateImages();
   </script>
 </body>
 </html>
