@@ -69,36 +69,53 @@
       margin-bottom: 15px;
     }
 
-    table {
-      width: 95%;
-      max-width: 1000px;
-      margin: 30px auto;
-      border-collapse: collapse;
+    .form-container {
       background-color: #1e293b;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 30px;
       border-radius: 12px;
-      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    th, td {
-      padding: 12px 10px;
-      text-align: center;
-    }
-
-    thead {
-      background-color: #334155;
-    }
-
-    th {
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
       color: #38bdf8;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 20px;
+      background-color: #334155;
+      color: #f1f5f9;
       font-size: 1em;
     }
 
-    tr:nth-child(even) {
-      background-color: #273449;
+    .server-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
-    tr:hover {
-      background-color: #3b4d63;
+    .server-img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .result {
+      text-align: center;
+      font-size: 1.2em;
+      color: #22c55e;
+      font-weight: bold;
+      margin-top: 20px;
     }
 
     footer {
@@ -127,55 +144,60 @@
   </header>
 
   <section class="hero-section">
-    <h2>Transferts entre serveurs</h2>
-    <p>Vous avez des kamas sur un serveur et souhaitez les transférer vers un autre ? C’est possible ! Choisissez le transfert souhaité ci-dessous.</p>
+    <h2>Transférer vos kamas entre serveurs</h2>
+    <p>Choisissez le serveur de départ, le serveur d’arrivée, entrez le montant à transférer, et voyez combien vous recevrez après frais (5%).</p>
   </section>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Depuis</th>
-        <th>Vers</th>
-        <th>Frais</th>
-        <th>Disponibilité</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Terra Cogita</td>
-        <td>Oshimo</td>
-        <td>5%</td>
-        <td><span style="color: #22c55e; font-weight: bold;">Disponible</span></td>
-      </tr>
-      <tr>
-        <td>Oshimo</td>
-        <td>Hergedrize</td>
-        <td>5%</td>
-        <td><span style="color: #22c55e; font-weight: bold;">Disponible</span></td>
-      </tr>
-      <tr>
-        <td>Hergedrize</td>
-        <td>Tiliwan</td>
-        <td>5%</td>
-        <td><span style="color: #22c55e; font-weight: bold;">Disponible</span></td>
-      </tr>
-      <tr>
-        <td>Tiliwan</td>
-        <td>Tiliwan 2</td>
-        <td>5%</td>
-        <td><span style="color: #22c55e; font-weight: bold;">Disponible</span></td>
-      </tr>
-      <tr>
-        <td>Tiliwan 2</td>
-        <td>Terra Cogita</td>
-        <td>5%</td>
-        <td><span style="color: #ef4444; font-weight: bold;">Complet</span></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="form-container">
+    <label for="source">Serveur source</label>
+    <select id="source">
+      <option value="terra-cogita">🟢 Terra Cogita</option>
+      <option value="oshimo">🟢 Oshimo</option>
+      <option value="hergedrize">🟢 Hergedrize</option>
+      <option value="tiliwan">🟢 Tiliwan</option>
+      <option value="tiliwan2">🟢 Tiliwan 2</option>
+    </select>
+
+    <div class="server-option">
+      <img src="images/terra-cogita.png" class="server-img" alt="Terra Cogita">
+      <img src="images/oshimo.png" class="server-img" alt="Oshimo">
+      <img src="images/hergedrize.png" class="server-img" alt="Hergedrize">
+      <img src="images/tiliwan.png" class="server-img" alt="Tiliwan">
+      <img src="images/tiliwan2.png" class="server-img" alt="Tiliwan 2">
+    </div>
+
+    <label for="target">Serveur de destination</label>
+    <select id="target">
+      <option value="terra-cogita">🟢 Terra Cogita</option>
+      <option value="oshimo">🟢 Oshimo</option>
+      <option value="hergedrize">🟢 Hergedrize</option>
+      <option value="tiliwan">🟢 Tiliwan</option>
+      <option value="tiliwan2">🟢 Tiliwan 2</option>
+    </select>
+
+    <label for="amount">Montant à transférer (en millions)</label>
+    <input type="number" id="amount" placeholder="Ex : 10" />
+
+    <div class="result" id="result">Vous recevrez : -</div>
+  </div>
 
   <footer>
     <p>&copy; 2025 Vente Kamas Dofus Touch - Tous droits réservés</p>
   </footer>
+
+  <script>
+    const amountInput = document.getElementById('amount');
+    const result = document.getElementById('result');
+
+    amountInput.addEventListener('input', () => {
+      const amount = parseFloat(amountInput.value);
+      if (!isNaN(amount) && amount > 0) {
+        const received = amount * 0.95;
+        result.textContent = `Vous recevrez : ${received.toFixed(2)} M`;
+      } else {
+        result.textContent = 'Vous recevrez : -';
+      }
+    });
+  </script>
 </body>
 </html>
