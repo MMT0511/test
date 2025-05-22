@@ -166,7 +166,7 @@
 
   <section class="hero-section">
     <h2>Transférer vos kamas entre serveurs</h2>
-    <p>Choisissez les serveurs, indiquez le montant, et visualisez le transfert. Frais de transfert : <strong>25%</strong></p>
+    <p>Choisissez les serveurs, indiquez le montant, et visualisez le transfert. Une marge de 20% est appliquée sur la conversion.</p>
   </section>
 
   <div class="form-container">
@@ -208,10 +208,19 @@
   </footer>
 
   <script>
-    const amountInput = document.getElementById('amount');
-    const result = document.getElementById('result');
+    // Prix de vente €/M des serveurs, comme sur serveurs.html
+    const prices = {
+      "terra-cogita": 0.57,
+      "oshimo": 0.62,
+      "hergedrize": 0.55,
+      "tiliwan": 0.58,
+      "tiliwan2": 0.56
+    };
+
     const sourceSelect = document.getElementById('source');
     const targetSelect = document.getElementById('target');
+    const amountInput = document.getElementById('amount');
+    const result = document.getElementById('result');
     const imgSource = document.getElementById('img-source');
     const imgTarget = document.getElementById('img-target');
 
@@ -222,20 +231,34 @@
 
     const updateResult = () => {
       const amount = parseFloat(amountInput.value);
-      if (!isNaN(amount) && amount > 0) {
-        const received = amount * 0.75;
-        result.textContent = `Vous recevrez : ${received.toFixed(2)} M`;
+      const source = sourceSelect.value;
+      const target = targetSelect.value;
+
+      if (!isNaN(amount) && amount > 0 && prices[source] && prices[target]) {
+        const rate = prices[source] / prices[target]; // conversion taux
+        const converted = amount * rate; // kamas bruts
+        const final = converted * 0.8; // marge 20%
+        result.textContent = `Vous recevrez : ${final.toFixed(2)} M`;
       } else {
         result.textContent = 'Vous recevrez : -';
       }
     };
 
-    sourceSelect.addEventListener('change', updateImages);
-    targetSelect.addEventListener('change', updateImages);
+    sourceSelect.addEventListener('change', () => {
+      updateImages();
+      updateResult();
+    });
+
+    targetSelect.addEventListener('change', () => {
+      updateImages();
+      updateResult();
+    });
+
     amountInput.addEventListener('input', updateResult);
 
-    // Initial image update
+    // Initialisation
     updateImages();
+    updateResult();
   </script>
 </body>
 </html>
