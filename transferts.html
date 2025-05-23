@@ -139,6 +139,17 @@
       margin-top: 20px;
     }
 
+    #swap {
+      padding: 8px 16px;
+      background-color: #334155;
+      color: #f1f5f9;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+
     footer {
       margin-top: 40px;
       padding: 20px;
@@ -190,6 +201,8 @@
           <option value="tiliwan2">Tiliwan 2</option>
         </select>
 
+        <button type="button" id="swap">⇅ Inverser les serveurs</button>
+
         <label for="amount">Montant à transférer (en millions)</label>
         <input type="number" id="amount" placeholder="Ex : 10" />
         <div class="result" id="result">Vous recevrez : -</div>
@@ -207,22 +220,17 @@
     <p>&copy; 2025 Vente Kamas Dofus Touch - Tous droits réservés</p>
   </footer>
 
-  <script>
-    // Prix de vente €/M des serveurs, comme sur serveurs.html
-    const prices = {
-      "terra-cogita": 4.60,
-      "oshimo": 4.50,
-      "hergedrize": 4.80,
-      "tiliwan": 3.90,
-      "tiliwan2": 3.30
-    };
+  <!-- PRIX IMPORTÉS ICI -->
+  <script src="prix.html"></script>
 
+  <script>
     const sourceSelect = document.getElementById('source');
     const targetSelect = document.getElementById('target');
     const amountInput = document.getElementById('amount');
     const result = document.getElementById('result');
     const imgSource = document.getElementById('img-source');
     const imgTarget = document.getElementById('img-target');
+    const swapBtn = document.getElementById('swap');
 
     const updateImages = () => {
       imgSource.src = `images/${sourceSelect.value}.png`;
@@ -233,11 +241,12 @@
       const amount = parseFloat(amountInput.value);
       const source = sourceSelect.value;
       const target = targetSelect.value;
+      const prices = window.serverPrices;
 
       if (!isNaN(amount) && amount > 0 && prices[source] && prices[target]) {
-        const rate = prices[source] / prices[target]; // conversion taux
-        const converted = amount * rate; // kamas bruts
-        const final = converted * 0.8; // marge 20%
+        const rate = prices[source] / prices[target];
+        const converted = amount * rate;
+        const final = converted * 0.8;
         result.textContent = `Vous recevrez : ${final.toFixed(2)} M`;
       } else {
         result.textContent = 'Vous recevrez : -';
@@ -256,7 +265,14 @@
 
     amountInput.addEventListener('input', updateResult);
 
-    // Initialisation
+    swapBtn.addEventListener('click', () => {
+      const temp = sourceSelect.value;
+      sourceSelect.value = targetSelect.value;
+      targetSelect.value = temp;
+      updateImages();
+      updateResult();
+    });
+
     updateImages();
     updateResult();
   </script>
