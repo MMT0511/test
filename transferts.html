@@ -222,11 +222,9 @@
 
   <!-- PRIX IMPORTÉS ICI -->
   <script src="prix.html"></script>
-
-  <script src="prix.html"></script>
-
+  
   <script>
-    window.onload = function () {
+    document.addEventListener('DOMContentLoaded', function () {
       const sourceSelect = document.getElementById('source');
       const targetSelect = document.getElementById('target');
       const amountInput = document.getElementById('amount');
@@ -241,15 +239,20 @@
       };
 
       const updateResult = () => {
-        const amount = parseFloat(amountInput.value);
+        const prices = window.serverPrices;
         const source = sourceSelect.value;
         const target = targetSelect.value;
-        const prices = window.serverPrices;
+        const amount = parseFloat(amountInput.value);
+
+        console.log('Source:', source, 'Prix source:', prices[source]);
+        console.log('Target:', target, 'Prix target:', prices[target]);
+        console.log('Montant:', amount);
 
         if (!isNaN(amount) && amount > 0 && prices[source] && prices[target]) {
           const rate = prices[source] / prices[target];
           const converted = amount * rate;
           const final = converted * 0.8;
+          console.log('Résultat final:', final);
           result.textContent = `Vous recevrez : ${final.toFixed(2)} M`;
         } else {
           result.textContent = 'Vous recevrez : -';
@@ -276,9 +279,10 @@
         updateResult();
       });
 
+      // Initialisation
       updateImages();
       updateResult();
-    };
+    });
   </script>
 </body>
 </html>
