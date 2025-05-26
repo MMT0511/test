@@ -220,69 +220,65 @@
     <p>&copy; 2025 Vente Kamas Dofus Touch - Tous droits réservés</p>
   </footer>
 
-  <!-- PRIX IMPORTÉS ICI -->
-  <script src="prix.html"></script>
-  
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const sourceSelect = document.getElementById('source');
-      const targetSelect = document.getElementById('target');
-      const amountInput = document.getElementById('amount');
-      const result = document.getElementById('result');
-      const imgSource = document.getElementById('img-source');
-      const imgTarget = document.getElementById('img-target');
-      const swapBtn = document.getElementById('swap');
+    const prices = {
+      "terra-cogita": 4.6,
+      "oshimo": 4.5,
+      "herdegrize": 4.8,
+      "tiliwan": 3.9,
+      "tiliwan2": 3.3
+    };
 
-      const updateImages = () => {
-        imgSource.src = `images/${sourceSelect.value}.png`;
-        imgTarget.src = `images/${targetSelect.value}.png`;
-      };
+    const sourceSelect = document.getElementById('source');
+    const targetSelect = document.getElementById('target');
+    const amountInput = document.getElementById('amount');
+    const result = document.getElementById('result');
+    const imgSource = document.getElementById('img-source');
+    const imgTarget = document.getElementById('img-target');
+    const swapBtn = document.getElementById('swap');
 
-      const updateResult = () => {
-        const prices = window.serverPrices;
-        const source = sourceSelect.value;
-        const target = targetSelect.value;
-        const amount = parseFloat(amountInput.value);
+    const updateImages = () => {
+      imgSource.src = `images/${sourceSelect.value}.png`;
+      imgTarget.src = `images/${targetSelect.value}.png`;
+    };
 
-        console.log('Source:', source, 'Prix source:', prices[source]);
-        console.log('Target:', target, 'Prix target:', prices[target]);
-        console.log('Montant:', amount);
+    const updateResult = () => {
+      const amount = parseFloat(amountInput.value);
+      const source = sourceSelect.value;
+      const target = targetSelect.value;
 
-        if (!isNaN(amount) && amount > 0 && prices[source] && prices[target]) {
-          const rate = prices[source] / prices[target];
-          const converted = amount * rate;
-          const final = converted * 0.8;
-          console.log('Résultat final:', final);
-          result.textContent = `Vous recevrez : ${final.toFixed(2)} M`;
-        } else {
-          result.textContent = 'Vous recevrez : -';
-        }
-      };
+      if (!isNaN(amount) && amount > 0 && prices[source] && prices[target]) {
+        const rate = prices[source] / prices[target];
+        const converted = amount * rate;
+        const final = converted * 0.8; // Marge de 20%
+        result.textContent = `Vous recevrez : ${final.toFixed(2)} M`;
+      } else {
+        result.textContent = 'Vous recevrez : -';
+      }
+    };
 
-      sourceSelect.addEventListener('change', () => {
-        updateImages();
-        updateResult();
-      });
-
-      targetSelect.addEventListener('change', () => {
-        updateImages();
-        updateResult();
-      });
-
-      amountInput.addEventListener('input', updateResult);
-
-      swapBtn.addEventListener('click', () => {
-        const temp = sourceSelect.value;
-        sourceSelect.value = targetSelect.value;
-        targetSelect.value = temp;
-        updateImages();
-        updateResult();
-      });
-
-      // Initialisation
+    sourceSelect.addEventListener('change', () => {
       updateImages();
       updateResult();
     });
+
+    targetSelect.addEventListener('change', () => {
+      updateImages();
+      updateResult();
+    });
+
+    amountInput.addEventListener('input', updateResult);
+
+    swapBtn.addEventListener('click', () => {
+      const temp = sourceSelect.value;
+      sourceSelect.value = targetSelect.value;
+      targetSelect.value = temp;
+      updateImages();
+      updateResult();
+    });
+
+    updateImages();
+    updateResult();
   </script>
 </body>
 </html>
